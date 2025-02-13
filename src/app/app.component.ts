@@ -24,6 +24,9 @@ import {
 export class AppComponent {
   readonly menus: Array<PoMenuItem> = [
     { label: 'Home', action: this.onClick.bind(this) },
+    { label: 'Tutores'},
+    { label: 'Pets'},
+    { label: 'Sair'},
   ];
 
   private onClick() {
