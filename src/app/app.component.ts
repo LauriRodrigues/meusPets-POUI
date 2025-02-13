@@ -23,13 +23,10 @@ import {
 })
 export class AppComponent {
   readonly menus: Array<PoMenuItem> = [
-    { label: 'Home', action: this.onClick.bind(this) },
-    { label: 'Tutores'},
-    { label: 'Pets'},
-    { label: 'Sair'},
+    { link: '/', label: 'Home', icon: 'an an-house'},
+    { link: '/', label: 'Tutores', icon: 'an an-user-circle'},
+    { link: '/', label: 'Pets', icon: 'an an-dog'},
+    { link: '/', label: 'Sair', icon: 'an an-sign-out'},
   ];
 
-  private onClick() {
-    alert('Clicked in menu item');
-  }
 }
