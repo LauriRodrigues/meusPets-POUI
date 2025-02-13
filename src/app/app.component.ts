@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router'
 
 import {
   PoMenuItem,
@@ -14,7 +15,8 @@ import {
     CommonModule,
     PoToolbarModule,
     PoMenuModule,
-    PoPageModule
+    PoPageModule,
+    RouterOutlet,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
