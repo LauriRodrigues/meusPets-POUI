@@ -6,4 +6,8 @@ export const routes: Routes = [
     path: '',
     component: HomeComponent
   },
+  { 
+    path: 'tutores', 
+    loadChildren: () => import('./pages/owners/owners.routes').then(m => m.ownersRoutes) 
+  }
 ];

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  PoPageModule,
-} from '@po-ui/ng-components';
+import { PoPageModule } from '@po-ui/ng-components';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +13,5 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit():void {
-    console.log('aqui')
   }
 }
