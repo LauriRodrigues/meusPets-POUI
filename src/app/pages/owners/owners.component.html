@@ -4,6 +4,10 @@
   [p-breadcrumb]="breadcrumb"
 >
 
-  <po-table [p-columns]="columns" [p-items]="owners.items"> </po-table>
+  <po-table 
+    [p-columns]="columns" 
+    [p-items]="owners.items"
+    [p-loading]="isLoading"
+  > </po-table>
 
 </po-page-default>

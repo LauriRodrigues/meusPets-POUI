@@ -29,6 +29,8 @@ export class OwnersComponent implements OnInit {
     remainingRecords: 0
   }
 
+  isLoading = false
+
   constructor(
     private ownersService:OwnersService,
     private poNotificationService:PoNotificationService
@@ -56,9 +58,17 @@ export class OwnersComponent implements OnInit {
   }
 
   getOwners():void {
+    this.isLoading = true
     this.ownersService.get().subscribe({
-      next:(owners:Owners) => this.owners.items = owners.items,
-      error:(error:any) => this.poNotificationService.error('Falha ao retornar tutores')
+      next:(owners:Owners) => { 
+        this.owners.items = owners.items 
+        this.isLoading = false 
+      },
+      
+      error:(error:any) => {
+        this.poNotificationService.error('Falha ao retornar tutores')
+        this.isLoading = false
+      }
     })
   }
   
