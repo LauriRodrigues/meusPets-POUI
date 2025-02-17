@@ -30,5 +30,4 @@ export class AppComponent {
     { link: '/', label: 'Pets', icon: 'an an-dog'},
     { link: '/', label: 'Sair', icon: 'an an-sign-out'},
   ];
-
 }
