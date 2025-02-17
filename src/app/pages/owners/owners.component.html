@@ -3,11 +3,19 @@
   [p-actions]="actions"
   [p-breadcrumb]="breadcrumb"
 >
-
+  @if (owners.items.length > 0) {
+    <div>
+      <po-tag [p-value]="textRemainingRecords"></po-tag>
+    </div>
+  }
+  
   <po-table 
     [p-columns]="columns" 
     [p-items]="owners.items"
     [p-loading]="isLoading"
+    [p-show-more-disabled]="!hasNextPage"
+    (p-show-more)="showMoreItems()"
+    [p-loading-show-more]="isLoading"
   > </po-table>
 
 </po-page-default>
