@@ -22,16 +22,19 @@ export class OwnersFormComponent implements OnInit {
   disableSubmit = false;
   operation = 'post';
   title: string = ""
+
   breadcrumb: PoBreadcrumb = {
     items: [
       { label: 'Home', link: '/' },
       { label: 'Tutores', link: '/tutores' },
       { label: 'Novo registro' }
     ]
-  };
+  }
+
   customLiterals: PoPageEditLiterals = {
     saveNew: 'Salvar e Novo'
-  };
+  }
+
   owner: Owner = {
     id: '',
     name: '',
@@ -40,7 +43,7 @@ export class OwnersFormComponent implements OnInit {
     email: '',
     tel1: '',
     tel2: ''
-  };
+  }
 
   constructor(
     private ownersService: OwnersService,
@@ -51,31 +54,31 @@ export class OwnersFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.setOperation();
-    this.setTitle();
-    this.operation === 'post' ? this.createForm(this.owner) : this.getOwner();
+    this.setOperation()
+    this.setTitle()
+    this.operation === 'post' ? this.createForm(this.owner) : this.getOwner()
   }
 
   setTitle(): void {
     if (this.operation === 'post') {
-      this.title = 'Novo registro';
+      this.title = 'Novo registro'
     } else {
-      this.title = 'Alterar registro';
-      this.customLiterals.saveNew = 'Excluir';
+      this.title = 'Alterar registro'
+      this.customLiterals.saveNew = 'Excluir'
     }
-    this.breadcrumb.items[2].label = this.title;
+    this.breadcrumb.items[2].label = this.title
   }
 
   setOperation(): void {
-    this.activatedRoute.snapshot.params['id'] ? this.operation = 'put' : this.operation = 'post';
+    this.activatedRoute.snapshot.params['id'] ? this.operation = 'put' : this.operation = 'post'
   }
 
   cancel(): void {
     if (this.ownerSubscription) {
-      this.ownerSubscription.unsubscribe();
+      this.ownerSubscription.unsubscribe()
     }
     
-    this.router.navigate(['tutores']);
+    this.router.navigate(['tutores'])
   }
 
   createForm(owner: Owner): void {
@@ -87,7 +90,7 @@ export class OwnersFormComponent implements OnInit {
       email: new FormControl(owner.email, { nonNullable: true }),
       tel1: new FormControl(owner.tel1, { nonNullable: true }),
       tel2: new FormControl(owner.tel2, { nonNullable: true })
-    });
+    })
   }
 
   getOwner(): void {
@@ -99,41 +102,41 @@ export class OwnersFormComponent implements OnInit {
   }
 
   onErrorGet(error: any): void {
-    this.isLoading = false;
-    this.poNotificationService.error('Falha ao retornar registro.');
+    this.isLoading = false
+    this.poNotificationService.error('Falha ao retornar registro.')
   }
 
   onSuccessGet(owner: Owner): void {
-    this.isLoading = false;
-    this.owner = owner;
-    this.createForm(owner);
+    this.isLoading = false
+    this.owner = owner
+    this.createForm(owner)
   }
 
   save(saveAndNew: boolean): void {
-    this.isLoading = true;
-    this.disableSubmit = true;
-    this.operation === 'post' ? this.post(saveAndNew) : this.put(saveAndNew);
+    this.isLoading = true
+    this.disableSubmit = true
+    this.operation === 'post' ? this.post(saveAndNew) : this.put(saveAndNew)
   }
 
   post(saveAndNew: boolean): void {
     this.ownerSubscription = this.ownersService.post(this.ownerForm.value).subscribe({
       next: response => this.onSuccessSave(response, saveAndNew),
       error: error => this.onErrorSave(error)
-    });
+    })
   }
 
   put(saveAndNew: boolean): void {
     this.ownerSubscription = this.ownersService.put(this.ownerForm.value).subscribe({
       next: response => this.onSuccessSave(response, saveAndNew),
       error: error => this.onErrorSave(error)
-    });
+    })
   }
 
   saveOrDelete(): void {
     if (this.operation === 'post') {
-      this.save(true);
+      this.save(true)
     } else {
-      this.confirmDelete();
+      this.confirmDelete()
     }
   }
 
@@ -146,8 +149,8 @@ export class OwnersFormComponent implements OnInit {
   }
 
   delete(): void {
-    this.isLoading = true;
-    this.disableSubmit = true;
+    this.isLoading = true
+    this.disableSubmit = true
     this.ownerSubscription = this.ownersService.delete(this.activatedRoute.snapshot.params['id']).subscribe({
       next: () => this.onSuccessDelete(),
       error: () => this.onErrorDelete()
@@ -156,25 +159,25 @@ export class OwnersFormComponent implements OnInit {
 
   onSuccessDelete(): void {
     this.router.navigate(['owners']);
-    this.poNotificationService.success('Registro excluído com sucesso.');
+    this.poNotificationService.success('Registro excluído com sucesso.')
   }
 
   onErrorDelete(): void {
     this.isLoading = false;
     this.disableSubmit = false;
-    this.poNotificationService.error('Falha ao excluir registro.');
+    this.poNotificationService.error('Falha ao excluir registro.')
   }
 
   onSuccessSave(response: any, saveAndNew: boolean): void {
     this.isLoading = false;
     this.disableSubmit = false;
-    this.poNotificationService.success(`Registro inserido com sucesso: ${response.id}`);
-    saveAndNew ? this.ownerForm.reset() : this.router.navigate(['owners']);
+    this.poNotificationService.success(`Registro inserido com sucesso: ${response.id}`)
+    saveAndNew ? this.ownerForm.reset() : this.router.navigate(['owners'])
   }
 
   onErrorSave(error: any): void {
-    this.isLoading = false;
-    this.disableSubmit = false;
-    this.poNotificationService.error('Falha ao salvar registro.');
+    this.isLoading = false
+    this.disableSubmit = false
+    this.poNotificationService.error('Falha ao salvar registro.')
   }
 }
