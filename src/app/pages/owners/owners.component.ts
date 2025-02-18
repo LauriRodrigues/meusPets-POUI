@@ -54,7 +54,7 @@ export class OwnersComponent implements OnInit {
 
   setColumns():void {
     this.columns = [
-      { property: 'id', label: 'Código'},
+      { property: 'id', label: 'Código', type: 'link', action:(row:string) => this.goToFormEdit(row) },
       { property: 'name', label: 'Nome'},
       { property: 'rg', label: 'RG', visible: false },
       { property: 'cpf', label: 'CPF'},
@@ -66,6 +66,10 @@ export class OwnersComponent implements OnInit {
         { value: 'include-pet', icon: 'an an-plus-circle', tooltip: 'Incluir pets' }
       ] }
     ]
+  }
+
+  goToFormEdit(id:string):void {
+    this.router.navigate(['tutores/editar', id])
   }
 
   getOwners(page: number, pageSize: number):void {

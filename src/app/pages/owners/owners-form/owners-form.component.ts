@@ -20,7 +20,7 @@ export class OwnersFormComponent implements OnInit {
   ownerSubscription!: Subscription;
   isLoading = false;
   disableSubmit = false;
-  operation = 'post';
+  operation:string = 'post';
   title: string = ""
 
   breadcrumb: PoBreadcrumb = {
