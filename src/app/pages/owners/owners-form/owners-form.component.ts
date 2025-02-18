@@ -158,7 +158,7 @@ export class OwnersFormComponent implements OnInit {
   }
 
   onSuccessDelete(): void {
-    this.router.navigate(['owners']);
+    this.router.navigate(['tutores']);
     this.poNotificationService.success('Registro excluído com sucesso.')
   }
 
@@ -172,7 +172,7 @@ export class OwnersFormComponent implements OnInit {
     this.isLoading = false;
     this.disableSubmit = false;
     this.poNotificationService.success(`Registro inserido com sucesso: ${response.id}`)
-    saveAndNew ? this.ownerForm.reset() : this.router.navigate(['owners'])
+    saveAndNew ? this.ownerForm.reset() : this.router.navigate(['tutores'])
   }
 
   onErrorSave(error: any): void {
