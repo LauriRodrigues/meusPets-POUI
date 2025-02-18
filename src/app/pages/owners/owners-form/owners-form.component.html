@@ -4,7 +4,11 @@
   (p-cancel)="cancel()"
   (p-save)="save(false)"
   (p-save-new)="saveOrDelete()"
+  [p-disable-submit]="disableSubmit"
+  [p-literals]="customLiterals"
 >
+
+  <po-loading-overlay [hidden]="!isLoading"></po-loading-overlay>
 
   @if(ownerForm) {
     <form [formGroup]="ownerForm">

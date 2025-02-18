@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule  } from '@angular/forms';
-import { PoBreadcrumb, PoPageModule, PoContainerModule, PoDividerModule, PoFieldModule, PoPageEditLiterals, PoNotificationService, PoDialogService} from '@po-ui/ng-components'
+import { PoBreadcrumb, PoPageModule, PoContainerModule, PoDividerModule, PoFieldModule, PoPageEditLiterals, PoNotificationService, PoDialogService, PoLoadingModule} from '@po-ui/ng-components'
 import { Subscription } from 'rxjs'
 import { Owner } from '../shared/interfaces/owner.interface';
 import { OwnerForm } from '../shared/interfaces/owner-form.interface';
@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-owners-form',
   standalone: true,
-  imports: [ PoPageModule, PoContainerModule, PoDividerModule, PoFieldModule, ReactiveFormsModule ],
+  imports: [ PoPageModule, PoContainerModule, PoDividerModule, PoFieldModule, ReactiveFormsModule, PoLoadingModule ],
   templateUrl: './owners-form.component.html',
   styleUrl: './owners-form.component.css'
 })
