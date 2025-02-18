@@ -75,7 +75,7 @@ export class OwnersFormComponent implements OnInit {
       this.ownerSubscription.unsubscribe();
     }
     
-    this.router.navigate(['owners']);
+    this.router.navigate(['tutores']);
   }
 
   createForm(owner: Owner): void {
