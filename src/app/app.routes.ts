@@ -9,5 +9,9 @@ export const routes: Routes = [
   { 
     path: 'tutores', 
     loadChildren: () => import('./pages/owners/owners.routes').then(m => m.ownersRoutes) 
+  },
+  { 
+    path: 'pets', 
+    loadChildren: () => import('./pages/pets/pets.routes').then(m => m.petsRoutes) 
   }
 ];
